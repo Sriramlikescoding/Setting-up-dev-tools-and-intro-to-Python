@@ -1,0 +1,5 @@
+print("hello_World")
+print(4)
+print("hello_World",4)
+print("Hello_World \n")
+print("welcome to ", end= "*")
