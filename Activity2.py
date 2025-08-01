@@ -1,11 +1,33 @@
-testdic = {'Codingal' : 2, 'Is':2, 'Best':2, 'for': 2, 'Coding':5}
+from abc import ABC, abstractmethod
 
-k = 2
+class animal(ABC):
+    def move(self):
+        pass
 
-res = 0
+class human(animal):
+    def move(self):
+        print("I can walk and talk and run")
 
-for key in testdic:
-    if testdic[key] == k:
-        res += 1
+class dog(animal):
+    def move(self):
+        print("I can run on four legs and I can bark")
+    
+class cat(animal):
+    def move(self):
+        print("I can eat and meow")
 
-print(res)
+class horse(animal):
+    def move(self):
+        print("I can run up to 50 miles per hour")
+
+class cheetah(animal):
+    def move(self):
+        print("I can run up to 70 miles per hour but only for a little bit")
+
+class bird(animal):
+    def move(self):
+        print("I can fly")
+
+class lion(animal):
+    def move(self):
+        print("I can roar")
