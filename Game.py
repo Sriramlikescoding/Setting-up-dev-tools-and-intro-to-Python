@@ -39,8 +39,8 @@ for _i in range(num_of_enemies):
     enemyImg.append(pygame.image.load('enemy.png'))
     enemyX.append(random.randint(0,SCREEN_WIDTH-64)) #64 size of the enemy
     enemyY.append(random.randint(ENEMY_START_Y_MIN, ENEMY_START_Y_MAX))
-    enemyX.append(ENEMY_SPEED_X)
-    enemyY.append(ENEMY_SPEED_Y)
+    enemyX_change.append(ENEMY_SPEED_X)
+    enemyY_change.append(ENEMY_SPEED_Y)
 
 #Bullet
 bulletImg = pygame.image.load("bullet.png")
@@ -48,7 +48,7 @@ BULLET_X = 0
 BULLET_Y = PLAYER_START_Y
 
 BULLET_X_CHANGE = 0
-BULLET_Y_CHANGE = BULLET_Y
+BULLET_Y_CHANGE = BULLET_SPEED_Y
 BULLET_STATE = "ready"
 
 #Creating Score
@@ -59,7 +59,7 @@ TEXT_Y = 10
 
 #Game over Text
 
-game_over_font = pygame.font.Font("freesansbold.tff", 64)
+game_over_font = pygame.font.Font("freesansbold.ttf", 64)
 
 def showScore(X, Y):
     score = font.render("Score: " + str(SCORE_VALUE), True, (255,255,255))
@@ -77,7 +77,7 @@ def Enemy(X, Y, I):
 
 def Fire_bullets(X,Y):
     global BULLET_STATE 
-    BULLET_STATE = "Fire"
+    BULLET_STATE = "fire"
     screen.blit(bulletImg, (X+16, Y+10))
 
 #Check Collision between enemy and bullet
