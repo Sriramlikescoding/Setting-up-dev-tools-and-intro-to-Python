@@ -1,39 +1,58 @@
-import pandas as pd
 import matplotlib.pyplot as p
+import pandas as pd
 import numpy as np
 import seaborn as sns
-
-data = pd.read_csv("Data.csv")
+data = pd.read_csv("Life_Expectancy.csv")
 print(data.head())
 print(data.info())
 print(data.isnull().any())
-labels = ["population", 'life_exp', "gdp_cap"]
-#Columns that we picked.
-for i in labels:
-    sns.boxplot(y=data[i], palette="winter")
-    #Shows data for each column
-    p.show()
-sns.boxplot(y = "gdp_cap", x = "continent", data=data, palette="viridis")
+sns.set_style("white")
+sns.countplot(x = data["continent"])
 p.show()
-sns.boxplot(y="life_exp", x="continent", data=data, palette="viridis")
+sns.set_style("dark")
+sns.countplot(x = data["continent"])
 p.show()
-sns.violinplot(y="gdp_cap", x="continent", data=data, palette="bright")
+sns.set_style("whitegrid")
+sns.countplot(x = data["continent"])
 p.show()
-sns.violinplot(y="life_exp", x="continent", data=data, palette="viridis")
-#Looks like violin
+sns.set_style("darkgrid")
+sns.countplot(x = data["continent"])
 p.show()
-for i in labels:
-    sns.kdeplot(data[i])
-    #Wavey plot shows data over time
-    p.show()
-for i in labels:
-    p.hist(data[i])
-    p.xlabel(i)
-    p.show()
-for i in labels:
-    sns.distplot(data[i])
-    p.show()
-    print(f"skewness is", data[i].skew())
-    #If skewness = 0, graph is symmetric, curve is in center
-    #If skewness > 0, graph is towards right, curve is on right
-    #If skewness < 0 graph is towards left, curve is on left
+sns.set_style("ticks")
+sns.countplot(x = data["continent"])
+p.show()
+sns.set_style("white")
+sns.countplot(x = data["continent"])
+sns.despine()
+p.show()
+sns.set_style("white")
+sns.countplot(x = data["continent"], palette="winter")
+p.show()
+sns.set_style("whitegrid")
+sns.countplot(x = data["continent"], color="Purple")
+p.show()
+sns.set_style("whitegrid")
+sns.set_context("paper")
+sns.countplot(x = data["continent"], color="Purple")
+p.show()
+sns.set_style("whitegrid")
+sns.set_context("notebook")
+sns.countplot(x = data["continent"], color="Purple")
+p.show()
+sns.set_style("whitegrid")
+sns.set_context("talk")
+sns.countplot(x = data["continent"], color="Purple")
+p.show()
+sns.set_style("whitegrid")
+sns.set_context("poster")
+sns.countplot(x = data["continent"], color="Purple")
+p.show()
+sns.set_style("whitegrid")
+sns.set_context("poster")
+sns.countplot(x = data["continent"], color="Purple")
+p.xticks(rotation = 45)
+p.show()
+sns.set_context("poster", font_scale=0.8)
+sns.countplot(x = data["continent"], color="Purple")
+p.xticks(rotation = 45)
+p.show()
