@@ -3,16 +3,26 @@ import pandas as pd
 import seaborn as sns
 import numpy as np
 
-Data = pd.read_csv("Life_Expectancy.csv")
+data = pd.read_csv("Movie.csv")
 
-grouped_data = Data.groupby("continent").mean(numeric_only=True)
-grouped_data = Data.reset_index()
-
-plot = sns.barplot(x = grouped_data["continent"], y = grouped_data["gdp_cap"], palette="winter")
-for bar in plot.patches:
-    plot.annotate(format(bar.get_height(), ".2f"), (bar.get_x()+bar.get_width()/2, bar.get_height()), ha = "center", va = "center", size = 12, xytext = (0,1), textcoords = "offset points")
-
-p.xlabel("continent")
-p.ylabel("gdp_cap")
-p.title("Annotated graph")
+print(data.info())
+print(data.head(6))
+print(data.isnull().any())
+print(data.isnull().sum())
+p.hist(data["Runtime"])
+p.xlabel("Movie Rating")
+p.ylabel("Count of Movies")
+p.show()
+data["Runtime"].unique()
+bins = np.arange(80,230,10)
+p.hist(data["Runtime"], edgecolor = "black", bins=bins, color = "g")
+p.xlabel("Movie Count")
+p.ylabel("Count of Movies")
+p.show()
+data["IMDB_Rating"].unique()
+bins = np.arange(8,10,0.20)
+p.hist(data["IMDB_Rating"], edgecolor = "black", bins = bins, color = "r")
+p.ylabel("Movie Countt")
+p.xlabel("Imdb Rating")
+p.xticks(bins)
 p.show()
