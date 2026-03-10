@@ -1,18 +1,42 @@
-import matplotlib.pyplot as p
-import pandas as pd
-import seaborn as sns
 import numpy as np
+import matplotlib.pyplot as p
+import seaborn as sns
+import pandas as pd
 
-Data = pd.read_csv("Life_Expectancy.csv")
-print(Data.head())
-print(Data.info())
-grouped_data = Data.groupby("continent").mean(numeric_only=True )
-grouped_data = grouped_data.reset_index()
-plot = sns.barplot(x = grouped_data["continent"], y=grouped_data["life_exp"], color = "red")
-for bar in plot.patches:
-    plot.annotate(format(bar.get_height(), ".2f"), (bar.get_x()+bar.get_width()/2, bar.get_height()), ha = "center", va = "center", size = 12, xytext = (0,1), textcoords = "offset points")
+data = pd.read_csv("Titanic Dataset.csv")
 
-p.xlabel("continent", size = 14)
-p.ylabel("life_exp", size = 14 )
-p.title("annotated barplot")
+print(data.head(5))
+print(data.isnull().sum())
+age_q1 = np.quantile(data["Age"], 0.25)
+age_q2 = np.quantile(data["Age"], 0.5)
+age_q3 = np.quantile(data["Age"], 0.75)
+
+print("Age quartiles are")
+print("Q1 - ", age_q1)
+print("Q2 - ", age_q2)
+print("Q3 - ", age_q3)
+
+
+IQR_Age = age_q3 - age_q1
+print("Interquartile Range is ", IQR_Age)
+
+#Showing graph
+
+p.hist(data["Age"])
+p.xlabel("Age")
+p.ylabel("Count of Passengers")
+p.show()
+
+#Calculate Quartiles of Fare
+Q1_Fare = np.quantile(data["Fare"], 0.25)
+Q2_Fare = np.quantile(data["Fare"], 0.5)
+Q3_Fare = np.quantile(data["Fare"], 0.75)
+IQR_Fare = Q3_Fare-Q1_Fare
+
+print("Quartiles are ", Q1_Fare, Q2_Fare, Q3_Fare)
+print("IQR is", IQR_Fare)
+
+p.hist(data["Fare"])
+p.xlabel("Fare")
+p.ylabel("Count of passengers")
 p.show()
