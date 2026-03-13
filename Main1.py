@@ -1,16 +1,24 @@
-import numpy as np
 import pandas as pd
-import statistics as st
+import matplotlib.pyplot as p
+import seaborn as sns
+import numpy as np
 
-data = pd.read_csv("Bestsellers with categories.csv")
-data.head(6)
+data = pd.read_csv("Titanic Dataset.csv")
+print(data.info())
+print(data.head(6))
 print(data.isnull().sum())
-
-Mean_price = np.mean(data["Price"])
-print(Mean_price)
-
-Median_price = np.median(data["Price"])
-print(Median_price)
-
-mode_price = st.mode(data["Price"])
-print(mode_price)
+sns.set_style("whitegrid")
+sns.countplot(x="Survived", data = data)
+p.show()
+sns.countplot(x = "Gender", hue = "Survived", data = data)
+p.show()
+sns.countplot(x = "Gender", hue = "Survived", data = data, palette = "winter" )
+p.show()
+sns.countplot(x = "Gender", hue = "Embarked", data = data, palette = "winter")
+p.show()
+sns.countplot(x = "Gender", hue = "Embarked", data = data, palette = "coolwarm")
+p.show()
+sns.countplot(x = "Gender", hue = "Embarked", data = data, palette = "pastel")
+p.show()
+sns.countplot(x = "Gender", hue = "Embarked", data = data, palette = "rocket")
+p.show()
