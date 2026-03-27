@@ -1,24 +1,21 @@
-import pandas as pd
-import matplotlib.pyplot as p
-import seaborn as sns
-import numpy as np
+import random
 
-data = pd.read_csv("Titanic Dataset.csv")
-print(data.info())
-print(data.head(6))
-print(data.isnull().sum())
-sns.set_style("whitegrid")
-sns.countplot(x="Survived", data = data)
-p.show()
-sns.countplot(x = "Gender", hue = "Survived", data = data)
-p.show()
-sns.countplot(x = "Gender", hue = "Survived", data = data, palette = "winter" )
-p.show()
-sns.countplot(x = "Gender", hue = "Embarked", data = data, palette = "winter")
-p.show()
-sns.countplot(x = "Gender", hue = "Embarked", data = data, palette = "coolwarm")
-p.show()
-sns.countplot(x = "Gender", hue = "Embarked", data = data, palette = "pastel")
-p.show()
-sns.countplot(x = "Gender", hue = "Embarked", data = data, palette = "rocket")
-p.show()
+def d():
+    list_outcomes = ("Red", "Blue", "Yellow", "Green")
+
+    result = random.choice(list_outcomes)
+
+#probability = 100/int(list_outcomes.count(""))
+    p = list_outcomes.count("Red")/len(list_outcomes)
+    print(f"probaility of picking red ball is ", p)
+
+    if result == "Red":
+        print("Result was red")
+        return("Result was red")
+
+    else:
+        print("Better luck next time")
+        return("Result not red")
+
+result = d()
+print(result)
