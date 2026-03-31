@@ -1,15 +1,11 @@
-import random 
+setA = {1, 2, 3, 5, 8, 3, 9}
+setB = {4, 28, 3, 5, 19, 9, 11}
 
-list_outcomes = ("Red", "Blue", "Yellow", "Green")
+result = setA.union(setB)
+total_digits = list(result)
+print(total_digits)
 
-result = random.choice(list_outcomes)
+result1 = setA.intersection(setB)
+list = list(result1)
+print(list)
 
-#probability = 100/int(list_outcomes.count(""))
-p = list_outcomes.count("Red")/len(list_outcomes)
-print(f"probaility of picking red ball is ", p)
-
-if result == "Red":
-    print("Result was red")
-
-else:
-    print("Better luck next time")

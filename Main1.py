@@ -1,21 +1,11 @@
-import random
+SetA = {1, 2, "A", 28, "C", "G", 0}
+Set1 = {2, "C", 28, "N", 6, "F" }
+SetQ = {2, "C", "G", 6, "H", 3}
 
-def d():
-    list_outcomes = ("Red", "Blue", "Yellow", "Green")
+result = SetA.union(Set1, SetQ)
+list1 = list(result)
+print(list1)
 
-    result = random.choice(list_outcomes)
-
-#probability = 100/int(list_outcomes.count(""))
-    p = list_outcomes.count("Red")/len(list_outcomes)
-    print(f"probaility of picking red ball is ", p)
-
-    if result == "Red":
-        print("Result was red")
-        return("Result was red")
-
-    else:
-        print("Better luck next time")
-        return("Result not red")
-
-result = d()
-print(result)
+result2 = SetA.intersection(Set1, SetQ)
+list2 = list(result2)
+print(list2)
