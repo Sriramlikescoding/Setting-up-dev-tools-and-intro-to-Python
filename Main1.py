@@ -1,11 +1,5 @@
-SetA = {1, 2, "A", 28, "C", "G", 0}
-Set1 = {2, "C", 28, "N", 6, "F" }
-SetQ = {2, "C", "G", 6, "H", 3}
-
-result = SetA.union(Set1, SetQ)
-list1 = list(result)
-print(list1)
-
-result2 = SetA.intersection(Set1, SetQ)
-list2 = list(result2)
-print(list2)
+import scipy.stats as stats
+probability_1= stats.poisson.cdf(20,15)
+print(f"Probability of getting 20 calls while average is 15 is {probability_1}")                 
+probability_2 = stats.poisson.cdf(21,15)-stats.poisson.cdf(16, 15)
+print(probability_2)
