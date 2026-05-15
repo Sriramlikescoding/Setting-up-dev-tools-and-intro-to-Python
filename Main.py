@@ -1,27 +1,30 @@
-import pandas  as pd
-import numpy as np
-import matplotlib.pyplot as p
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn import metrics
+from sklearn.linear_model import SGDClassifier
+from sklearn.datasets import make_blobs
+import  numpy as np
+import matplotlib.pyplot as plt
+x, y =make_blobs(n_samples=50, centers=2, random_state=0, cluster_std=0.60)
+clf = SGDClassifier(loss='hinge', alpha = 0.01, max_iter = 200)
+clf.fit(x,y)
+xx = np.linspace(-1, 5, 10)
+yy = np.linspace(-1, 0, 10)
+X1, X2 = np.meshgrid(xx, yy)
+z = np.empty(X1.shape)
+for(i, j), val in np.ndenumerate(X1):
+    x1 = val 
+    x2 = X2[i, j]
+    p = clf.decision_function([[x1, x2]])
+    z[i, j] = p[0]
+levels = [-1.0, 0.0, 1.0]
+linestyles = ["dashed", "solid", "dashed"]
+colors = 'k'
+plt.contour(X1, X2, z, levels, colors=colors, linestyles = linestyles)
+plt.scatter(x[:, 0], x[:, 1], c = y, cmap = plt.cm.Paired, edgecolor = 'black', s=20)
+plt.title("Maximum margine separating hyperplane")
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.axis("tight")
+plt.show()
 
-data = pd.read_csv("petrol_consumption.csv")
-print(data.info())
-print(data.head())
-print(data.isnull().any())
 
 
-x = data[["Petrol_tax", "Average_income", "Paved_Highways", "Population_Driver_licence(%)"]]
-y = data["Petrol_Consumption"]
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
-regressor = LinearRegression()
-regressor.fit(x_train, y_train)
-coeficcient_data = pd.DataFrame(regressor.coef_, x.columns, columns = ["Coefficient"])
-print(coeficcient_data)
-y_prediction = regressor.predict(x_test)
-dataset = pd.DataFrame({"Actual":y_test, "Predicted":y_prediction})
-print(dataset)
-print(f"mean absolute error is {metrics.mean_absolute_error(y_test, y_prediction)}")
-print(f"Mean squared error is {metrics.mean_squared_error(y_test, y_prediction)}")
-print(f"root mean squared error {np.sqrt(metrics.mean_squared_error(y_test, y_prediction))}")
 
