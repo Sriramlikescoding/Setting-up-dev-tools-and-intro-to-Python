@@ -1,30 +1,24 @@
-from sklearn.linear_model import SGDClassifier
-from sklearn.datasets import make_blobs
-import  numpy as np
-import matplotlib.pyplot as plt
-x, y =make_blobs(n_samples=50, centers=2, random_state=0, cluster_std=0.60)
-clf = SGDClassifier(loss='hinge', alpha = 0.01, max_iter = 200)
-clf.fit(x,y)
-xx = np.linspace(-1, 5, 10)
-yy = np.linspace(-1, 0, 10)
-X1, X2 = np.meshgrid(xx, yy)
-z = np.empty(X1.shape)
-for(i, j), val in np.ndenumerate(X1):
-    x1 = val 
-    x2 = X2[i, j]
-    p = clf.decision_function([[x1, x2]])
-    z[i, j] = p[0]
-levels = [-1.0, 0.0, 1.0]
-linestyles = ["dashed", "solid", "dashed"]
-colors = 'k'
-plt.contour(X1, X2, z, levels, colors=colors, linestyles = linestyles)
-plt.scatter(x[:, 0], x[:, 1], c = y, cmap = plt.cm.Paired, edgecolor = 'black', s=20)
-plt.title("Maximum margine separating hyperplane")
-plt.xlabel("Feature 1")
-plt.ylabel("Feature 2")
-plt.axis("tight")
-plt.show()
+import matplotlib.pyplot as p
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, confusion_matrix
 
-
-
+x = np.arange(10).reshape(-1,1)
+y = np.array([0,1,0,0, 1, 1, 1, 1, 1, 1]).reshape(-1,1)
+model = LogisticRegression(solver='liblinear', C = 10.0, random_state=0)
+model.fit(x,y)
+xprediction = model.predict_proba(x)
+yprediction = model.predict(x)
+#x1prediction = model.predict(x)
+score = model.score(x,y)
+cm = confusion_matrix(y, yprediction)
+report = classification_report(y, yprediction)
+print(f"x:{x} y:{y}")
+print(f"x:{x}\n")
+print(f"y: {y}")
+print(f"intercept:{model.intercept_}")
+print(f"Coefficient: {model.coef_}")
+print(f"xprediction = {xprediction}")
+print(f"yprediction = {yprediction}")
 
